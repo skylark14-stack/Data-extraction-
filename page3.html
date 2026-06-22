@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Extractor - Raw Text</title>
+    <style>
+      p {
+          font-size: 16px;
+          color: white;
+      }
+      div {
+          font-family: Arial;
+          text-align: center;
+          zoom: 1.2;
+          background-image: url(image1.jpg);
+          background-size: cover;
+          height:400px;
+      }
+      #main{
+          color: white;
+          width: 300px;
+          text-align: center;
+          margin-left: 290px;
+      }
+      #heading{
+            color: rgb(187, 245, 254);
+      }
+      button{
+            background-color: black;
+            color: white;
+            box-shadow: 2px 2px 10px grey;
+      }
+      button:hover{
+            background-color: white;
+            color: black;
+            box-shadow: 2px 2px 10px yellow;
+      }
+      #two{
+
+      }
+
+      /* ---- Page 3: Raw text screen ---- */
+
+      #two.tall{
+            height: auto;
+            min-height: 400px;
+            padding-bottom: 30px;
+      }
+
+      #raw-text{
+            display: block;
+            width: 380px;
+            max-width: 80%;
+            height: 160px;
+            margin: 15px auto;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: rgb(187, 245, 254);
+            background-color: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgb(187, 245, 254);
+            border-radius: 8px;
+            resize: vertical;
+      }
+
+      #convert-btn{
+            margin-top: 10px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: Arial;
+      }
+    </style>
+   </head>
+   <body>
+
+    <div>
+      <div id="two" class="tall"><br><br>
+         <h1 id="main">Raw Extracted</h1>
+         <h1 id="heading">Text</h1>
+         <p>Here is the raw text pulled from your document. Review it below, you can copy this data .</p>
+
+         <textarea id="raw-text" readonly>Loading extracted text...</textarea>
+
+         <br>
+         <br><br>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const textArea = document.getElementById("raw-text");
+        
+        // Grab the saved text from browser memory
+        const savedText = localStorage.getItem("extractedText");
+
+        if (savedText) {
+          // Inject the extracted text directly into your textarea
+          textArea.value = savedText;
+          
+          // Clear it out of memory so it's clean for your next upload
+          localStorage.removeItem("extractedText");
+        } else {
+          // Fallback if someone goes to page3.html directly without uploading
+          textArea.value = "No text found. Please go back to the upload screen and submit a document first.";
+        }
+      });
+    </script>
+    
+  </body>
+</html>
